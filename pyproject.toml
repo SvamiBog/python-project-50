@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = ""
+authors = ["Maksim Rubanets"]
+repository = "https://github.com/SvamiBog/python-project-50"
+readme = "README.md"
+packages = [
+  { include = "gendiff" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff:main"
