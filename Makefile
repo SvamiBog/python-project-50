@@ -6,7 +6,8 @@ publish:
 
 package-install:
 	poetry build
-	python -m pip install --user dist/hexlet_code-0.1.0-py3-none-any.whl
+	poetry publish --dry-run
+	python -m pip install --user dist/hexlet_code-0.1.0-py3-none-any.whl --force-reinstall
 
 lint:
 	poetry run flake8 gendiff
