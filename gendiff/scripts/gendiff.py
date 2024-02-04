@@ -23,8 +23,15 @@ def main():
     print(diff)
 
 
+def format_value(value):
+    if isinstance(value, bool):
+        return str(value).lower()
+    return value
+
+
 def format_line(key, value, prefix=" "):
-    return f"{prefix} {key}: {value}"
+    formatted_value = format_value(value)
+    return f"{prefix} {key}: {formatted_value}"
 
 
 def handle_key(key, file1, file2):
