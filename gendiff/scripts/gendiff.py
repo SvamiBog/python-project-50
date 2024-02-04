@@ -28,7 +28,7 @@ def format_line(key, value, prefix=" "):
 
 
 def handle_key(key, file1, file2):
-    val1 = file1.get(key, "DNE")  # DNE - Does Not Exist
+    val1 = file1.get(key, "DNE")
     val2 = file2.get(key, "DNE")
 
     if val1 == val2:
