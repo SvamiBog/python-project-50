@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Указываем версии Python, на которых хотим тестировать
         python-version: [3.11, 3.12]
     steps:
       - uses: actions/checkout@v4
@@ -35,5 +34,5 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: poetry run pytest --cov
+          coverageCommand: make test-coverage
           debug: true
