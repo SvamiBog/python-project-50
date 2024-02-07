@@ -1,6 +1,9 @@
-.venv
-*.egg-info
-__pycache__
+.idea
+.venv/
+venv/
 dist/
-*.pyc
-#Makefile#
+__pycache__
+.coverage
+coverage.xml
+.pytest_cache/
+.vim
