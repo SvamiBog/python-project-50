@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import json
-import yaml
+from gendiff.file_opener import detect_file_format
 
 
 def compare_config_files(file_path1, file_path2):
@@ -9,14 +8,6 @@ def compare_config_files(file_path1, file_path2):
     keys = sorted(set(file1) | set(file2))
     lines = [compare_and_format(key, file1, file2) for key in keys]
     return "{\n" + "\n".join(lines) + "\n}"
-
-
-def detect_file_format(file):
-    fileExtension = file.split('.')[1].lower
-    if fileExtension == 'json':
-        return json.load(open(file))
-    elif fileExtension == 'yaml' or 'yml':
-        return yaml.safe_load(open(file))
 
 
 def compare_and_format(key, file1, file2):
