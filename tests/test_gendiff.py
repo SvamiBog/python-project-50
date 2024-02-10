@@ -5,9 +5,10 @@ import os
 
 def get_path(file, fileToOpenType):
     if fileToOpenType == 'input':
-      return os.path.join('tests', 'fixtures', 'input', file)
+        return os.path.join('tests', 'fixtures', 'input', file)
     elif fileToOpenType == 'expected':
-         return os.path.join('tests', 'fixtures', 'expected', file)
+        return os.path.join('tests', 'fixtures', 'expected', file)
+
 
 @pytest.mark.parametrize(
     "test_input1, test_input2, expected",
