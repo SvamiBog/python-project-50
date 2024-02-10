@@ -7,3 +7,9 @@ __pycache__
 coverage.xml
 .pytest_cache/
 .vim
+file1.json
+file2.json
+file1.yml
+file2.yml
+file1.yaml
+file2.yaml
