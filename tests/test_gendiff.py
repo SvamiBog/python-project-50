@@ -84,6 +84,13 @@ def get_path(file, fileToOpenType):
             'expected_result_big_json.txt',
             id="big_json_file"
         ),
+        pytest.param(
+            'file1_big.yml',
+            'file2_big.yaml',
+            'json',
+            'expected_result_big_json.txt',
+            id="big_json_file_mix"
+        ),
     ],
 )
 def test_generare_diff(test_input1, test_input2, formater, expected):
