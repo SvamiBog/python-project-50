@@ -3,22 +3,25 @@ from typing import Any, Dict
 DEFAULT_INDENT = 4
 
 
+def format_dict(value: Dict, depth: int) -> str:
+    lines = ["{"]
+    for key, nested_value in value.items():
+        formatted_value = format_value_as_string(
+            nested_value, depth + DEFAULT_INDENT
+        )
+        lines.append(f"{' ' * depth}    {key}: {formatted_value}")
+    lines.append(f"{' ' * depth}}}")
+    return "\n".join(lines)
+
+
 def format_value_as_string(value: Any, depth: int) -> str:
     if isinstance(value, dict):
-        lines = ["{"]
-        for key, nested_value in value.items():
-            formatted_value = format_value_as_string(
-                nested_value,
-                depth + DEFAULT_INDENT
-            )
-            lines.append(f"{' ' * depth}    {key}: {formatted_value}")
-        lines.append(f"{' ' * depth}}}")
-        return "\n".join(lines)
+        return format_dict(value, depth)
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
         return "null"
-    return value
+    return str(value)
 
 
 def format_line(dictionary: Dict, key: Any, depth: int, sign: str) -> str:
