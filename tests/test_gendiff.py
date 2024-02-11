@@ -18,21 +18,21 @@ def get_path(file, fileToOpenType):
             'file1.json',
             'file2.json',
             'stylish',
-            'expected_result.txt',
+            'expected_result_stylish.txt',
             id="flat_json_file"
         ),
         pytest.param(
             'file1.yaml',
             'file2.yaml',
             'stylish',
-            'expected_result.txt',
+            'expected_result_stylish.txt',
             id="flat_yaml_file"
         ),
         pytest.param(
             'file1.yaml',
             'file2.json',
             'stylish',
-            'expected_result.txt',
+            'expected_result_stylish.txt',
             id="flat_mix_file"
         ),
         pytest.param(
@@ -61,7 +61,7 @@ def get_path(file, fileToOpenType):
             'file2_big.yml',
             'stylish',
             'expected_result_big_stylish.txt',
-            id="big_mix_file_stylich"
+            id="big_stylich_file_mix"
         ),
         pytest.param(
             'file1_big.yaml',
@@ -75,7 +75,21 @@ def get_path(file, fileToOpenType):
             'file2_big.json',
             'stylish',
             'expected_result_big_stylish.txt',
-            id="big_mix_file_plain"
+            id="big_plain_file_mix"
+        ),
+        pytest.param(
+            'file1_big.json',
+            'file2_big.json',
+            'json',
+            'expected_result_big_json.txt',
+            id="big_json_file"
+        ),
+        pytest.param(
+            'file1_big.yml',
+            'file2_big.yaml',
+            'json',
+            'expected_result_big_json.txt',
+            id="big_json_file_mix"
         ),
     ],
 )
