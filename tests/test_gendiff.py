@@ -1,4 +1,5 @@
-from gendiff.config_diff import compare_config_files
+#!/usr/bin/env python
+from gendiff.generate_diff import generate_diff
 import pytest
 import os
 
@@ -11,32 +12,63 @@ def get_path(file, fileToOpenType):
 
 
 @pytest.mark.parametrize(
-    "test_input1, test_input2, expected",
+    "test_input1, test_input2, formater, expected",
     [
         pytest.param(
             'file1.json',
             'file2.json',
+            'stylish',
             'expected_result.txt',
             id="flat_json_file"
         ),
         pytest.param(
             'file1.yaml',
             'file2.yaml',
+            'stylish',
             'expected_result.txt',
             id="flat_yaml_file"
         ),
         pytest.param(
             'file1.yaml',
             'file2.json',
+            'stylish',
             'expected_result.txt',
             id="flat_mix_file"
         ),
+        pytest.param(
+            'file1_big.json',
+            'file2_big.json',
+            'stylish',
+            'expected_result_big_stylish.txt',
+            id="big_json_file"
+        ),
+        pytest.param(
+            'file1_big.yml',
+            'file2_big.yml',
+            'stylish',
+            'expected_result_big_stylish.txt',
+            id="big_yml_file"
+        ),
+        pytest.param(
+            'file1_big.yaml',
+            'file2_big.yaml',
+            'stylish',
+            'expected_result_big_stylish.txt',
+            id="big_yaml_file"
+        ),
+        pytest.param(
+            'file1_big.json',
+            'file2_big.yml',
+            'stylish',
+            'expected_result_big_stylish.txt',
+            id="big_mix_file"
+        ),
     ],
 )
-def test_generare_diff(test_input1, test_input2, expected):
+def test_generare_diff(test_input1, test_input2, formater, expected):
     expected_path = get_path(expected, 'expected')
     with open(expected_path, 'r') as file:
         result_data = file.read()
         test_path1 = get_path(test_input1, 'input')
         test_path2 = get_path(test_input2, 'input')
-        assert compare_config_files(test_path1, test_path2) == result_data
+        assert generate_diff(test_path1, test_path2, formater) == result_data

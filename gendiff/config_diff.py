@@ -1,27 +1,37 @@
 #!/usr/bin/env python
-from gendiff.file_opener import detect_file_format
 
 
-def compare_config_files(file_path1, file_path2):
-    file1 = detect_file_format(file_path1)
-    file2 = detect_file_format(file_path2)
-    keys = sorted(set(file1) | set(file2))
-    lines = [compare_and_format(key, file1, file2) for key in keys]
-    return "{\n" + "\n".join(lines) + "\n}"
-
-
-def compare_and_format(key, file1, file2):
-    val1, val2 = file1.get(key, "DNE"), file2.get(key, "DNE")
-    if val1 == val2:
-        return format_line(key, val1)
-    lines = []
-    if val1 != "DNE":
-        lines.append(format_line(key, val1, "-"))
-    if val2 != "DNE":
-        lines.append(format_line(key, val2, "+"))
-    return "\n".join(lines)
-
-
-def format_line(key, value, prefix=" "):
-    value = str(value).lower() if isinstance(value, bool) else value
-    return f"{prefix} {key}: {value}"
+def compare_config_files(data1: dict, data2: dict):
+    diff = []
+    for key in sorted(set(data1) | set(data2)):
+        entry = {'key': key}
+        if key in data1 and key in data2:
+            if data1[key] == data2[key]:
+                entry.update({
+                    'operation': 'same',
+                    'value': data1[key]
+                })
+            elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+                entry.update({
+                    'operation': 'nested',
+                    'value': compare_config_files(data1[key], data2[key])
+                })
+            else:
+                entry.update({
+                    'operation': 'changed',
+                    'old': data1.get(key),
+                    'new': data2.get(key)
+                })
+        else:
+            if key not in data1:
+                entry.update({
+                    'operation': 'add',
+                    'new': data2[key]
+                })
+            else:
+                entry.update({
+                    'operation': 'removed',
+                    'old': data1[key]
+                })
+        diff.append(entry)
+    return diff
