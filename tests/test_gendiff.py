@@ -61,7 +61,21 @@ def get_path(file, fileToOpenType):
             'file2_big.yml',
             'stylish',
             'expected_result_big_stylish.txt',
-            id="big_mix_file"
+            id="big_mix_file_stylich"
+        ),
+        pytest.param(
+            'file1_big.yaml',
+            'file2_big.yaml',
+            'plain',
+            'expected_result_big_plain.txt',
+            id="big_plain_file"
+        ),
+        pytest.param(
+            'file1_big.yaml',
+            'file2_big.json',
+            'stylish',
+            'expected_result_big_stylish.txt',
+            id="big_mix_file_plain"
         ),
     ],
 )
