@@ -27,7 +27,6 @@ jobs:
       - name: Run linter and pytest
         run: |
           poetry run flake8 .
-          poetry run pytest
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         if: github.ref_name == 'main'
