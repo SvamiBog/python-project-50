@@ -10,4 +10,3 @@ def get_formatter(formater):
         return render_plain
     if formater == 'json':
         return render_json
-    raise ValueError(f"Unrecognized formater: {formater}")
