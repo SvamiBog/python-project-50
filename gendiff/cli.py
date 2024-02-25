@@ -13,6 +13,7 @@ def parse():
         '-f',
         '--format',
         help='set format of output',
+        choices=['stylish', 'plain', 'json'],
         default='stylish'
     )
 
