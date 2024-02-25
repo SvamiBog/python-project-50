@@ -9,7 +9,7 @@ def generate_diff(
         file2_path: str,
         formater: str = 'stylish'
 ) -> str:
-    date_file1 = detect_file_format(file1_path)
-    date_file2 = detect_file_format(file2_path)
-    diff = compare_config_files(date_file1, date_file2)
+    data_file1 = detect_file_format(file1_path)
+    data_file2 = detect_file_format(file2_path)
+    diff = compare_config_files(data_file1, data_file2)
     return get_formatter(formater)(diff)
