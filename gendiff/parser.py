@@ -5,6 +5,6 @@ import yaml
 
 def parse(data, extension):
     if extension == 'json':
-        return json.load(data)
+        return json.loads(data)
     elif extension == 'yaml' or 'yml':
         return yaml.safe_load(data)
