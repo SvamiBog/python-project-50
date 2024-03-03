@@ -3,8 +3,8 @@ import json
 import yaml
 
 
-def parse(data, extension):
-    if extension == 'json':
+def parse(data, format):
+    if format == 'json':
         return json.loads(data)
-    elif extension == 'yaml' or 'yml':
+    elif format == 'yaml' or 'yml':
         return yaml.safe_load(data)
